@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roadmap Cuan Pertama dari Konten — @adigitalabs</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #060608;
+  --surface: #0e0e14;
+  --surface2: #16161f;
+  --border: rgba(255,255,255,0.06);
+  --accent: #7c5cfc;
+  --accent2: #a78bfa;
+  --accent3: #c4b5fd;
+  --gold: #f5c842;
+  --green: #34d399;
+  --text: #eeeaf8;
+  --muted: #5e5a72;
+  --muted2: #8b879e;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* AMBIENT BG */
+body::before {
+  content: '';
+  position: fixed;
+  top: -30vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 80vh;
+  background: radial-gradient(ellipse, rgba(124,92,252,0.1) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 64px 0 0;
+  text-align: center;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124,92,252,0.1);
+  border: 1px solid rgba(124,92,252,0.25);
+  color: var(--accent2);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(34px, 7vw, 56px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--accent2);
+}
+
+.hero .sub {
+  font-size: 17px;
+  color: var(--muted2);
+  max-width: 480px;
+  margin: 0 auto 36px;
+  line-height: 1.75;
+}
+
+.hero-meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+
+.hero-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 44px 0;
+}
+
+/* ── SECTION LABEL ── */
+.sec-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── PHASE TIMELINE ── */
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 48px;
+  bottom: 48px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, rgba(124,92,252,0.1) 100%);
+}
+
+.phase {
+  display: flex;
+  gap: 24px;
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.phase-dot {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+}
+
+.phase-dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(124,92,252,0.4);
+}
+
+.phase-card {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+  margin-bottom: 12px;
+}
+
+.phase-card:hover { border-color: rgba(124,92,252,0.3); }
+
+.phase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.phase-title {
+  font-family: 'Fraunces', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.phase-badge {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+}
+
+.badge-week {
+  background: rgba(124,92,252,0.12);
+  color: var(--accent2);
+  border: 1px solid rgba(124,92,252,0.2);
+}
+
+.badge-month {
+  background: rgba(245,200,66,0.1);
+  color: var(--gold);
+  border: 1px solid rgba(245,200,66,0.2);
+}
+
+.badge-now {
+  background: rgba(52,211,153,0.1);
+  color: var(--green);
+  border: 1px solid rgba(52,211,153,0.2);
+}
+
+.phase-desc {
+  font-size: 14px;
+  color: var(--muted2);
+  margin-bottom: 14px;
+  line-height: 1.65;
+}
+
+.phase-tasks {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.task-check {
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 1.5px solid rgba(124,92,252,0.35);
+  background: rgba(124,92,252,0.06);
+  flex-shrink: 0;
+  margin-top: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.task-check.done {
+  background: var(--accent);
+  border-color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 11px;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: rgba(124,92,252,0.06);
+  border: 1px solid rgba(124,92,252,0.18);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 12px;
+  color: var(--muted2);
+}
+.callout strong { color: var(--text); }
+
+.callout.gold {
+  background: rgba(245,200,66,0.05);
+  border-color: rgba(245,200,66,0.15);
+  border-left-color: var(--gold);
+}
+
+.callout.green {
+  background: rgba(52,211,153,0.05);
+  border-color: rgba(52,211,153,0.15);
+  border-left-color: var(--green);
+}
+
+/* ── MINDSET CARDS ── */
+.mindset-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.mindset-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.mindset-card .mc-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.mc-wrong { color: #f87171; }
+.mc-right { color: var(--green); }
+
+.mindset-card p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted2);
+}
+
+.mindset-card p strong { color: var(--text); }
+
+/* ── MONETISASI TABLE ── */
+.tbl-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+thead tr { background: var(--surface2); }
+
+th {
+  padding: 11px 16px;
+  text-align: left;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+tr:last-child td { border-bottom: none; }
+tbody tr { background: var(--surface); }
+tbody tr:hover { background: var(--surface2); }
+
+/* ── CTA BRIDGE ── */
+.bridge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bridge::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.bridge-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 14px;
+}
+
+.bridge p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.bridge .pain {
+  background: rgba(124,92,252,0.07);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  font-size: 15px;
+  font-style: italic;
+  color: var(--muted2);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.bridge .pain strong { color: var(--text); font-style: normal; }
+
+.bridge .resolve {
+  font-size: 15px;
+  color: var(--muted2);
+  line-height: 1.7;
+}
+
+/* ── CTA BOX ── */
+.cta-section { margin-bottom: 48px; text-align: center; }
+
+.cta-box {
+  background: linear-gradient(135deg, rgba(124,92,252,0.12), rgba(167,139,250,0.06));
+  border: 1px solid rgba(124,92,252,0.3);
+  border-radius: 24px;
+  padding: 44px 32px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 300px;
+  background: radial-gradient(ellipse, rgba(124,92,252,0.08) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.cta-free {
+  display: inline-block;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.25);
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.cta-box h3 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(24px, 4vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.cta-box h3 em { font-style: italic; color: var(--accent2); }
+
+.cta-box p {
+  font-size: 15px;
+  color: var(--muted2);
+  max-width: 440px;
+  margin: 0 auto 28px;
+  line-height: 1.75;
+}
+
+.cta-box p strong { color: var(--text); }
+
+.price-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 22px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.price-main {
+  font-family: 'Fraunces', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--accent2);
+}
+
+.price-sep {
+  width: 1px;
+  height: 36px;
+  background: var(--border);
+}
+
+.price-note {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: left;
+  line-height: 1.5;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 36px;
+  border-radius: 100px;
+  transition: all 0.3s;
+  box-shadow: 0 8px 32px rgba(124,92,252,0.35);
+  letter-spacing: -0.01em;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(124,92,252,0.5);
+  background: #6d4ef0;
+}
+
+.btn-arrow { transition: transform 0.3s; }
+.btn:hover .btn-arrow { transform: translateX(4px); }
+
+.cta-note {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cta-quote {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 380px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 28px 0 48px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer a { color: var(--accent2); text-decoration: none; }
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation: fadeUp 0.7s ease both; }
+
+@media (max-width: 560px) {
+  .mindset-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">🗺️ Free Roadmap dari @adigitalabs</div>
+    <h1>Roadmap<br><em>Cuan Pertama</em><br>dari Konten</h1>
+    <p class="sub">Dari 0 follower sampai transaksi pertama — step by step yang realistis, tanpa hype, tanpa tipu-tipu.</p>
+    <div class="hero-meta">
+      <span>⚡ 4 Fase yang harus dilalui</span>
+      <span>✅ Checklist per fase</span>
+      <span>💰 Roadmap realistis</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MINDSET DULU -->
+  <div class="reveal">
+    <div class="sec-label">Sebelum Mulai</div>
+    <div class="callout gold">
+      💡 <strong>Satu hal yang harus lu pahami duluan:</strong> Cuan pertama dari konten bukan soal viral. Bukan soal followers ribuan. Tapi soal <strong>konten yang tepat, ke orang yang tepat, di waktu yang tepat.</strong>
+    </div>
+
+    <div class="mindset-grid">
+      <div class="mindset-card">
+        <div class="mc-label mc-wrong">❌ Mindset Salah</div>
+        <p>"Harus viral dulu baru bisa dapet uang dari konten."</p>
+      </div>
+      <div class="mindset-card">
+        <div class="mc-label mc-right">✅ Mindset Bener</div>
+        <p><strong>100 followers yang tepat</strong> lebih berharga dari 10.000 yang random.</p>
+      </div>
+      <div class="mindset-card">
+        <div class="mc-label mc-wrong">❌ Mindset Salah</div>
+        <p>"Belum punya produk, jadi belum bisa cuan."</p>
+      </div>
+      <div class="mindset-card">
+        <div class="mc-label mc-right">✅ Mindset Bener</div>
+        <p><strong>Affiliate marketing</strong> bisa dimulai dari follower 0 sekalipun.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TIMELINE -->
+  <div class="reveal">
+    <div class="sec-label">4 Fase Roadmap</div>
+
+    <div class="timeline">
+
+      <!-- FASE 1 -->
+      <div class="phase">
+        <div>
+          <div class="phase-dot active">🧱</div>
+        </div>
+        <div style="flex:1">
+          <div class="phase-card">
+            <div class="phase-header">
+              <div class="phase-title">Fase 1 — Pondasi</div>
+              <div class="phase-badge badge-week">Minggu 1–2</div>
+            </div>
+            <p class="phase-desc">Sebelum bikin konten, pastiin pondasinya kuat. Fase ini bukan soal posting — tapi soal <em>tahu mau ngomong ke siapa dan tentang apa.</em></p>
+            <div class="phase-tasks">
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Tentuin niche spesifik — siapa yang lu bantu dan masalah apa yang lu selesaikan</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Tulis "Audiens Statement": Aku bantu [siapa] yang [masalah] untuk [hasil] tanpa [hambatan]</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Optimasi bio Instagram — headline, deskripsi, link</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Pilih 1 format konten utama dan kuasai dulu</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Setup Notion content bank — tempat simpan semua ide</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="phase">
+        <div>
+          <div class="phase-dot">📢</div>
+        </div>
+        <div style="flex:1">
+          <div class="phase-card">
+            <div class="phase-header">
+              <div class="phase-title">Fase 2 — Konsistensi</div>
+              <div class="phase-badge badge-week">Minggu 3–8</div>
+            </div>
+            <p class="phase-desc">Fase ini cuma ada satu aturan: <strong>posting konsisten.</strong> Belum perlu mikir cuan. Fokus build trust dulu.</p>
+            <div class="phase-tasks">
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Target: 3–4 konten per minggu minimum</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Setiap konten punya satu tujuan jelas: edukasi, inspirasi, atau solusi</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Balas semua komentar dalam 60 menit pertama (Golden Window)</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Pantau metrik mingguan: konten mana yang save & share-nya tinggi?</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Iterasi — replikasi konten yang perform, stop yang nggak</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Mulai kumpulkan "pain point bank" dari komentar & DM masuk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="phase">
+        <div>
+          <div class="phase-dot">💡</div>
+        </div>
+        <div style="flex:1">
+          <div class="phase-card">
+            <div class="phase-header">
+              <div class="phase-title">Fase 3 — Monetisasi Awal</div>
+              <div class="phase-badge badge-month">Bulan 2–3</div>
+            </div>
+            <p class="phase-desc">Ini fase di mana cuan pertama bisa masuk. Tapi ingat — <strong>bukan berarti hard selling.</strong> Tetap 80% value, 20% offer.</p>
+            <div class="phase-tasks">
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Buat atau pilih 1 produk/jasa untuk ditawarkan</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Buat freebie yang jadi "pintu masuk" ke produk lo</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Sisipkan CTA organik di konten: "Komen [kata kunci] untuk [freebie]"</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Setup halaman produk di Lynk.id atau platform lain</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Tracking: berapa yang DM, berapa yang klik, berapa yang beli</div>
+            </div>
+
+            <div style="margin-top: 16px;">
+              <div class="callout" style="margin-bottom: 0;">
+                <strong>Rumus konten monetisasi:</strong> 80% kasih value gratis → 20% tawarkan produk sebagai "next step yang lebih dalam."
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 4 -->
+      <div class="phase">
+        <div>
+          <div class="phase-dot">🚀</div>
+        </div>
+        <div style="flex:1">
+          <div class="phase-card">
+            <div class="phase-header">
+              <div class="phase-title">Fase 4 — Scale Up</div>
+              <div class="phase-badge badge-month">Bulan 4+</div>
+            </div>
+            <p class="phase-desc">Udah ada transaksi pertama? Sekarang waktunya scale. Jangan buru-buru — scale itu soal <em>memperbesar apa yang udah terbukti jalan.</em></p>
+            <div class="phase-tasks">
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Analisis: konten mana yang paling banyak generate leads?</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Buat lebih banyak konten dengan angle yang serupa</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Tambah channel distribusi: TikTok, YouTube Shorts, atau Threads</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Pertimbangkan produk kedua atau upgrade produk pertama</div>
+              <div class="task"><div class="task-check" onclick="toggleCheck(this)"></div>Bangun email list atau komunitas untuk direct access ke audiens</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MONETISASI TABLE -->
+  <div class="reveal">
+    <div class="sec-label">Model Monetisasi per Level</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>Mulai Kapan</th>
+            <th>Estimasi Cuan</th>
+            <th>Effort</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Affiliate Marketing</strong></td>
+            <td>Dari hari pertama</td>
+            <td>5–30% per sale</td>
+            <td>Rendah</td>
+          </tr>
+          <tr>
+            <td><strong>Produk Digital</strong></td>
+            <td>Followers 100+</td>
+            <td>Rp 29K–299K/unit</td>
+            <td>Sedang</td>
+          </tr>
+          <tr>
+            <td><strong>Jasa / Coaching</strong></td>
+            <td>Followers 100+</td>
+            <td>Rp 199K–999K/sesi</td>
+            <td>Sedang-Tinggi</td>
+          </tr>
+          <tr>
+            <td><strong>Komunitas Berbayar</strong></td>
+            <td>Followers 500+</td>
+            <td>Rp 49K–199K/bulan</td>
+            <td>Tinggi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout green">
+      ✅ <strong>Rekomendasi untuk pemula:</strong> Mulai dari affiliate atau produk digital murah (Rp 29K–99K). Modal nol, resiko nol, bisa dimulai kapan aja.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BRIDGE MASALAH -->
+  <div class="reveal">
+    <div class="bridge">
+      <div class="bridge-eyebrow">💬 Tapi gua tau masalah terbesar lu setelah baca ini...</div>
+      <p>Lu udah ngerti roadmap-nya. Tapi pas mau bikin konten pertama, lu pasti stuck di sini:</p>
+      <div class="pain">
+        "Aduh, <strong>kalimat pertama video gua (Hook)</strong> harus nulis apa ya?<br>
+        Terus di <strong>caption</strong> gua harus ngetik apa biar orang mau baca?"
+      </div>
+      <p class="resolve">Akhirnya, lu malah overthinking lagi, tutup HP, dan gak jadi upload.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section reveal">
+    <div class="cta-box">
+      <div class="cta-free">✦ Solusinya Simpel</div>
+      <h3>Gak usah pusing<br>mikir kalimat dari <em>nol.</em></h3>
+      <p>Gua udah nulis <strong>Hook & Caption Swipe File</strong> berisi template siap pakai yang biasa gua gunain sendiri. Lu tinggal fokus rekam video pakai HP — kalimat pemikatnya tinggal lu contek.</p>
+
+      <div class="price-row">
+        <div>
+          <div style="font-size:11px;color:var(--muted);margin-bottom:3px;">Harga</div>
+          <div class="price-main">Rp 29.000</div>
+        </div>
+        <div class="price-sep"></div>
+        <div class="price-note">Seharga sebungkus rokok<br>atau segelas kopi ☕</div>
+      </div>
+
+      <a href="http://lynk.id/adingrh14/2zgkmz2920z1/checkout" target="_blank" class="btn">
+        Ambil Swipe File di Sini
+        <span class="btn-arrow">→</span>
+      </a>
+
+      <div class="cta-note">🔒 Pembayaran aman via Lynk.id · Akses langsung setelah bayar</div>
+      <div class="cta-quote">"Harganya sengaja gua bikin sangat murah karena niat gua cuma satu — bantu lu cepet melangkah dan bisa dapet penghasilan tambahan dari ngonten."</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Dibuat dengan ❤️ oleh <a href="https://instagram.com/adigitalabs" target="_blank">@adigitalabs</a></p>
+    <p style="margin-top:8px;">Bookmark halaman ini sebagai panduan perjalanan ngonten lu.</p>
+  </div>
+
+</div>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+reveals.forEach(el => obs.observe(el));
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  el.innerHTML = el.classList.contains('done') ? '✓' : '';
+}
+</script>
+</body>
+</html>
